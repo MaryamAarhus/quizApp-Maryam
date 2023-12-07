@@ -1,0 +1,52 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App Prototype</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="quiz-container">
+        <form id="quiz-form">
+            <label for="question">Question (max 140 chars):</label>
+            <input type="text" id="question" maxlength="140" required>
+            <div class="answers">
+            <div>
+                <input type="radio" name="correct-answer" id="answer1" required>
+                <input type="text" placeholder="Answer 1" required>
+            </div>
+            <div>
+                <input type="radio" name="correct-answer" id="answer2" required>
+                <input type="text" placeholder="Answer 2" required>
+            </div>
+            <div>
+                <input type="radio" name="correct-answer" id="answer3" required>
+                <input type="text" placeholder="Answer 3" required>
+            </div>
+            <div>
+                    <input type="radio" name="correct-answer" id="answer1" required>
+                    <input type="text" placeholder="Answer 1" required>
+                </div>
+                <div>
+                    <input type="radio" name="correct-answer" id="answer2" required>
+                    <input type="text" placeholder="Answer 2" required>
+                </div>
+                <div>
+                    <input type="radio" name="correct-answer" id="answer3" required>
+                    <input type="text" placeholder="Answer 3" required>
+                </div>
+                <div>
+                    <input type="radio" name="correct-answer" id="answer4" required>
+                    <input type="text" placeholder="Answer 4" required>
+                </div>
+                </div>
+                <button type="button" id="randomize">Randomize Answers</button>
+                <button type="submit">Submit Question</button>
+                </form>
+                </div>
+                <script src="script.js"></script>
+                </body>
+                
+                </html>

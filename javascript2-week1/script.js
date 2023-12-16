@@ -1,20 +1,47 @@
-document.getElementById('randomize').addEventListener('click', function() {
-    let answers = document.querySelectorAll('.answers div');
-    for (let i = answers.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        [answers[i].innerHTML, answers[j].innerHTML] = [answers[j].innerHTML, answers[i].innerHTML];
-    }
-});
-document.getElementById('quiz-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    let correctAnswer = document.querySelector('input[type="radio"]:checked + input').value;
-    let answersInputs = document.querySelectorAll('.answers input[type="text"]');
+document.addEventListener('DOMContentLoaded', () => {
+    const randomizeButton = document.getElementById('randomize');
+    const form = document.getElementById('quizForm');
+    const answerBlocks = document.querySelectorAll('.answer-block');
 
-    answersInputs.forEach(input => {
-        if (input.value === correctAnswer) {
-            input.style.backgroundColor = 'lightgreen';
-        } else {
-            input.style.backgroundColor = 'lightcoral';
+    // Randomize the order of the answers
+    randomizeButton.addEventListener('click', () => {
+        let shuffledBlocks = Array.from(answerBlocks);
+        shuffleArray(shuffledBlocks);
+        const answersContainer = document.getElementById('answers');
+
+        answersContainer.innerHTML = '';
+
+        shuffledBlocks.forEach(block => {
+            answersContainer.appendChild(block);
+        });
+    });
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault(); // Prevent form submission
+
+        // Reset colors for all answers
+        answerBlocks.forEach(block => block.querySelector('.answer').style.backgroundColor = '');
+
+        // Get the selected correct answer
+        const selectedCorrectAnswer = Array.from(answerBlocks).find(block => block.querySelector('.correct-answer').checked);
+
+        if (selectedCorrectAnswer) {
+            // Highlight correct answer in green and others in red
+            answerBlocks.forEach(block => {
+                const input = block.querySelector('.answer');
+                if (input.id === selectedCorrectAnswer.querySelector('.correct-answer').value) {
+                    input.style.backgroundColor = 'lightgreen';
+                } else {
+                    input.style.backgroundColor = 'lightcoral';
+                }
+            });
         }
     });
 });

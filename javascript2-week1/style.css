@@ -1,26 +1,26 @@
 body {
     font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
 }
 
-.quiz-container {
-    width: 400px;
-    border: 1px solid #ccc;
+#quizForm {
+    width: 50%;
+    margin: auto;
     padding: 20px;
-    border-radius: 8px;
 }
 
-input[type="text"] {
-    width: 80%;
-    padding: 8px;
+.answer-block {
     margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
 }
 
-input[type="radio"] {
+.answer-block label {
     margin-right: 10px;
 }
+
+.correct-answer {
+    margin-left: 10px;
+}
+
+.answer-block {
+    color: rgb(0, 174, 255);
+}
+

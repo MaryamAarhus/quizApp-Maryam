@@ -1,52 +1,46 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz App Prototype</title>
+    <title>Quiz Form</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="quiz-container">
-        <form id="quiz-form">
-            <label for="question">Question (max 140 chars):</label>
-            <input type="text" id="question" maxlength="140" required>
-            <div class="answers">
-            <div>
-                <input type="radio" name="correct-answer" id="answer1" required>
-                <input type="text" placeholder="Answer 1" required>
+    <form id="quizForm">
+        <label for="question">Question (max 140 characters):</label>
+        <input type="text" id="question" name="question" maxlength="140"><br><br>
+
+        <div id="answers">
+            <div class="answer-block">
+                <label for="answer1">Answer 1:</label>
+                <input type="text" class="answer" id="answer1" name="answer1">
+                <input type="radio" class="correct-answer" name="correctAnswer" value="answer1"><br>
             </div>
-            <div>
-                <input type="radio" name="correct-answer" id="answer2" required>
-                <input type="text" placeholder="Answer 2" required>
+            <div class="answer-block">
+                <label for="answer2">Answer 2:</label>
+                <input type="text" class="answer" id="answer2" name="answer2">
+                <input type="radio" class="correct-answer" name="correctAnswer" value="answer2"><br>
             </div>
-            <div>
-                <input type="radio" name="correct-answer" id="answer3" required>
-                <input type="text" placeholder="Answer 3" required>
+            <div class="answer-block">
+                <label for="answer3">Answer 3:</label>
+                <input type="text" class="answer" id="answer3" name="answer3">
+                <input type="radio" class="correct-answer" name="correctAnswer" value="answer3"><br>
             </div>
-            <div>
-                    <input type="radio" name="correct-answer" id="answer1" required>
-                    <input type="text" placeholder="Answer 1" required>
-                </div>
-                <div>
-                    <input type="radio" name="correct-answer" id="answer2" required>
-                    <input type="text" placeholder="Answer 2" required>
-                </div>
-                <div>
-                    <input type="radio" name="correct-answer" id="answer3" required>
-                    <input type="text" placeholder="Answer 3" required>
-                </div>
-                <div>
-                    <input type="radio" name="correct-answer" id="answer4" required>
-                    <input type="text" placeholder="Answer 4" required>
-                </div>
-                </div>
-                <button type="button" id="randomize">Randomize Answers</button>
-                <button type="submit">Submit Question</button>
-                </form>
-                </div>
-                <script src="script.js"></script>
-                </body>
-                
-                </html>
+            <div class="answer-block">
+                <label for="answer4">Answer 4:</label>
+                <input type="text" class="answer" id="answer4" name="answer4">
+                <input type="radio" class="correct-answer" name="correctAnswer" value="answer4"><br>
+            </div>
+        </div>
+
+        <button type="button" id="randomize">Randomize Answers</button>
+        <input type="submit" value="Submit">
+    </form>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

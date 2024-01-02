@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Quiz App</title>
+    <link rel="stylesheet" type="text/css" href="quizApp2.css">
+</head>
+
+<body>
+    <div class="quiz-form">
+        <h2>Add a Quiz Question</h2>
+        <form id="quizForm">
+            <div class="form-group">
+                <label for="question">Question (max 140 characters):</label>
+                <input type="text" id="question" maxlength="140" required>
+            </div>
+            <div class="options">
+                <label>Options:</label>
+                <input type="text" class="option" required>
+                <input type="text" class="option" required>
+                <input type="text" class="option" required>
+                <input type="text" class="option" required>
+                <label>Correct Answer:</label>
+                <select id="correctAnswer" required>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                    <option value="4">Option 4</option>
+                </select>
+            </div>
+            <button type="button" id="randomize">Randomize Options</button>
+            <button type="submit">Add Question</button>
+        </form>
+    </div>
+    <div class="quiz-questions">
+        <h2>Quiz Questions</h2>
+        <input type="text" id="filter" placeholder="Search questions...">
+        <div id="questionsList"></div>
+    </div>
+
+    <script src="quizApp2.js"></script>
+</body>
+
+</html>

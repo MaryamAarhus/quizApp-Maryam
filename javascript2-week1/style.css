@@ -1,0 +1,26 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+#quizForm {
+    width: 50%;
+    margin: auto;
+    padding: 20px;
+}
+
+.answer-block {
+    margin-bottom: 10px;
+}
+
+.answer-block label {
+    margin-right: 10px;
+}
+
+.correct-answer {
+    margin-left: 10px;
+}
+
+.answer-block {
+    color: rgb(0, 174, 255);
+}
+

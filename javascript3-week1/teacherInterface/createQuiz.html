@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Quiz App</title>
+    <link rel="stylesheet" type="text/css" href="createQuiz.css">
+</head>
+
+<body>
+    <div class="quiz-form">
+        <h2>Add a Quiz Question</h2>
+        <form id="quizForm">
+            <div class="form-group">
+                <label for="quizName">Quiz Name:</label>
+                <input type="text" id="quizName" required>
+                <label for="question">Question (max 140 characters):</label>
+                <textarea id="question" maxlength="140" required></textarea>
+            </div>
+            <div class="options">
+                <label>Options:</label>
+                <label for="option1">Option 1:</label>
+                <input type="text" id="option1" class="option" required>
+                <label for="option2">Option 2:</label>
+                <input type="text" id="option2" class="option" required>
+                <label for="option3">Option 3:</label>
+                <input type="text" id="option3" class="option" required>
+                <label for="option4">Option 4:</label>
+                <input type="text" id="option4" class="option" required>
+                <label for="correctAnswer">Correct Answer:</label>
+                <select id="correctAnswer" required>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                    <option value="4">Option 4</option>
+                </select>
+            </div>
+            <button type="button" id="randomize">Randomize Options</button>
+            <button type="submit">Add Question</button>
+            <button type="button" id="saveQuestions">Save Questions</button>
+            <button type="button" id="saveQuiz">Save Quiz</button>
+        </form>
+    </div>
+    <div id="submittedQuestions" class="submitted-questions">
+        <h2>Submitted Questions</h2>
+        <div id="questionsList"></div> 
+    </div>
+    <div class="sorting">
+        <label for="sortOptions">Sort Questions:</label>
+        <select id="sortOptions">
+            <option value="alpha">Alphabetically</option>
+            <option value="random">Randomly</option>
+        </select>
+    </div>    
+    <div class="search-container">
+        <input type="text" id="filter" placeholder="Search questions...">
+        <button id="searchButton">Search</button>
+    </div>
+    <div id="answerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="answerText"></p>
+        </div>
+    </div>
+<div id="startUI" class="start-ui"></div>
+    <div class="player-setup">
+        <label for="player1Name">Player 1 Name:</label>
+        <input type="text" id="player1Name" placeholder="Player 1 Name">
+        <label for="player2Name">Player 2 Name:</label>
+        <input type="text" id="player2Name" placeholder="Player 2 Name">
+        <a href="quizPage.html">
+            <button id="startQuiz" type="button">Start Quiz</button>
+        </a>
+    </div>
+</div>
+<div id="quizUI" class="quiz-ui" style="display:none;"></div>
+    <div class="scoreboard" style="display:none;">
+        <div>
+            <span id="player1DisplayName"></span>
+            <span id="player1Score">0</span>
+        </div>
+        <div>
+            <span id="player2DisplayName"></span>
+            <span id="player2Score">0</span>
+        </div>
+    </div>
+</div>
+    <audio id="endGameSound" src="Sounds/end-game-sound.mp3"></audio>
+    <script src="createQuiz.js"></script>
+</body>
+
+</html>

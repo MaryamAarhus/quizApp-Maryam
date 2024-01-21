@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Quiz</title>
+    <link rel="stylesheet" type="text/css" href="editQuiz.css">
+</head>
+
+<body>
+    <div class="edit-quiz-form">
+        <h2>Edit Your Quiz</h2>
+        <form id="editQuizForm">
+            <!-- Form elements for editing an existing quiz -->
+            <button type="submit">Update Quiz</button>
+        </form>
+    </div>
+    <div id="submittedQuestions" class="submitted-questions">
+        <h2>Submitted Questions</h2>
+    </div>
+    <button type="button" id="randomize">Randomize Options</button>
+    <button type="submit">Add Question</button>
+    <button type="button" id="saveQuestions">Save Questions</button>
+    </form>
+    </div>
+    <div class="sorting">
+        <label for="sortOptions">Sort Questions:</label>
+        <select id="sortOptions">
+            <option value="alpha">Alphabetically</option>
+            <option value="random">Randomly</option>
+        </select>
+    </div>
+    <script src="quizManager.js"></script>
+    <script src="editQuiz.js"></script>
+</body>
+
+</html>

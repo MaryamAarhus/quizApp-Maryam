@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Teacher Dashboard - Quiz App</title>
+    <link rel="stylesheet" type="text/css" href="teacherDashboard.css">
+</head>
+
+<body>
+    <header>
+        <h1>Teacher Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="createQuiz.html">Create Quiz</a></li>
+                <li><a href="viewResults.html">View Results</a></li>
+                <li><a href="manageQuizzes.html">Manage Quizzes</a></li>
+                <li><a href="logout.html">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2 id="welcomeMessage">Welcome, [Teacher Name]</h2>
+        </section>
+        <section>
+            <h3>Manage Your Quizzes</h3>
+            <button onclick="location.href='createQuiz.html'">Create New Quiz</button>
+            <button onclick="location.href='editQuiz.html'">Edit Existing Quizzes</button>
+        </section>
+        <section>
+            <h4>Quiz Results Overview</h4>
+            <button onclick="location.href='viewResults.html'">View Detailed Results</button>
+        </section>
+        <section>
+            <h5>Classroom Resource</h5>
+        </section>
+        <section>
+            <h6>Notifications</h6>
+        </section>
+        <nav>
+            <a href="profileSettings.html">Profile & Settings</a>
+        </nav>
+    </main>
+
+    <footer>
+        <p>QuizApp © 2024</p>
+    </footer>
+
+    <script src="teacherDashboard.js"></script>
+</body>
+
+</html>

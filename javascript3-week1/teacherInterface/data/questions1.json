@@ -1,0 +1,122 @@
+[
+    {
+        "question": "He argues that dreams that repeat often have an important message, signaling the dreamer to get over ….. fear or solve a problematic issue.",
+        "options": [
+            { "text": "any", "isCorrect": false },
+            { "text": "some", "isCorrect": true },
+            { "text": "many", "isCorrect": false },
+            { "text": "few", "isCorrect": false }               
+        ]
+    },
+    {
+        "question": "The ancient Hopewell people of North America probably cultivated corn and …… crops, but hunting and gathering were still of critical importance in their economy.",
+        "options": [
+            { "text": "another", "isCorrect": false },
+            { "text": "the others", "isCorrect": false },
+            { "text": "other", "isCorrect": true },
+            { "text": "other than", "isCorrect": false }
+        ]
+    },
+    
+    {
+        "question": "The wallet inside the car ------ him to steal the car.",
+        "options": [
+            { "text": "inspired", "isCorrect": false },
+            { "text": "tempted", "isCorrect": true },
+            { "text": "persuaded", "isCorrect": false },
+            { "text": "exposed", "isCorrect": false }
+        ]
+    },
+
+    {
+        "question": "It was beautiful when all the fireworks lit up the sky ------- and formed the shape of our countrys flag.",
+        "options": [
+            { "text": "simultaneously", "isCorrect": true },
+            { "text": "excitedly", "isCorrect": false },
+            { "text": "belatedly", "isCorrect": false },
+            { "text": "immediately", "isCorrect": false }
+        ]
+    },
+
+    {
+        "question": "Try not to do anything without considering its --------.",
+        "options": [
+            { "text": "consequences", "isCorrect": true },
+            { "text": "relation", "isCorrect": false },
+            { "text": "commitments", "isCorrect": false },
+            { "text": "capacity", "isCorrect": false }
+        ]
+    },
+
+    {
+        "question": "How can we ………. the barriers of fear and hostility which divide the two communities?",
+        "options": [
+            { "text": "obstruct", "isCorrect": true },
+            { "text": "abandon", "isCorrect": false },
+            { "text": "put out", "isCorrect": false },
+            { "text": "wearout", "isCorrect": false }
+        ]
+    },
+
+    {
+        "question": "Some scientists ………. that heat deep inside our planet causes material to expand and move upwards.",
+        "options": [
+           { "text": "apprehend", "isCorrect": true }, 
+           { "text": "explicate", "isCorrect": false },
+           { "text": "maintain", "isCorrect": false },
+           { "text": "acclaim", "isCorrect": false }
+        ]
+    },
+
+    {
+        "question": "The documentary showed an eye operation in ……… detail.",
+        "options": [
+            { "text": "feasible", "isCorrect": false }, 
+            { "text": "vital", "isCorrect": false },
+            { "text": "intricate", "isCorrect": false }, 
+            { "text": "minute", "isCorrect": true }
+        ]
+    },
+
+    {
+        "question": "The house is ……. toward sun, so it gets lots of sun.",
+        "options": [
+            { "text": "detected", "isCorrect": false },
+            { "text": "oriented", "isCorrect": true },
+            { "text": "dispersed", "isCorrect": false },
+            { "text": "settled", "isCorrect": false }
+        ]
+    },
+
+    {
+         "question": "To increase the number of female representatives, the committee decided to …….. in favor of women for three years.",
+        "options": [
+            { "text": "distinguish", "isCorrect": false },
+            { "text": "discriminate", "isCorrect": true },
+            { "text": "caution", "isCorrect": false },
+            { "text": "appeal", "isCorrect": false }
+        ]
+    },
+
+    {
+        "question": "The rules regarding attendance and homework are …….. in that institute; there is no room for any disobedience.",
+        "options": [
+            { "text": "robust", "isCorrect": false },
+            { "text": "limber", "isCorrect": false },
+            { "text": "rigid", "isCorrect": false },
+            { "text": "accurate", "isCorrect": false }
+        ]
+    },
+
+    {
+       "question": "The …… earthquake left a lot of people homeless.",
+        "options": [
+            { "text": "dramatic", "isCorrect": false },
+            { "text": "dormant", "isCorrect": true },
+            { "text": "rudimentary", "isCorrect": false },
+            { "text": "devastating", "isCorrect": false }
+        ] 
+    }
+
+
+]

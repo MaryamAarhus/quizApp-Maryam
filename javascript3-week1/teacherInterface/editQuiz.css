@@ -1,0 +1,81 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    background-image: url('background.jpg');
+    /* URL for the background image */
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #333;
+    padding: 20px;
+}
+
+.edit-quiz-form,
+.submitted-questions {
+    background: rgba(255, 255, 255, 0.9);
+    /* Slightly transparent white background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.edit-quiz-form h2,
+.submitted-questions h2 {
+    color: #28acd4;
+    margin-bottom: 20px;
+}
+
+form#editQuizForm {
+    margin-bottom: 40px;
+}
+
+button {
+    background-color: #28acd4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+button:hover {
+    background-color: #1a6a91;
+}
+
+button#randomize,
+button#saveQuestions {
+    margin-bottom: 20px;
+}
+
+.submitted-questions {
+    max-height: 400px;
+    overflow-y: auto;
+    /* Allow scrolling if content is too long */
+}
+
+.question-item {
+    background: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sorting {
+    margin-bottom: 20px;
+}
+
+select#sortOptions {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}

@@ -52,11 +52,11 @@ function randomizeOptions() {
     updateOptionColors();
 }
 
-function displaySubmittedQuestions() {
+function displaySubmittedQuestions(questionsToShow = quizQuestions) {
     const submittedQuestionsContainer = document.getElementById('submittedQuestions');
-    submittedQuestionsContainer.innerHTML = ''; // Clear previous content
+    submittedQuestionsContainer.innerHTML = '';
 
-    quizQuestions.forEach(question => {
+    questionsToShow.forEach(question => {
         const questionElement = document.createElement('div');
         questionElement.classList.add('question-item');
 
@@ -73,6 +73,13 @@ function displaySubmittedQuestions() {
         submittedQuestionsContainer.appendChild(questionElement);
     });
 }
+function filterQuestions(searchText) {
+    // Filter the quizQuestions array based on the searchText
+    const filteredQuestions = quizQuestions.filter(question => 
+        question.question.toLowerCase().includes(searchText)
+    );
+     displaySubmittedQuestions(filteredQuestions);
+    }
 function validateForm() {
     const question = document.getElementById('question').value.trim();
     const options = Array.from(document.getElementsByClassName('option'));

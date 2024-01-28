@@ -36,71 +36,92 @@ document.addEventListener('DOMContentLoaded', async () => {
         saveQuestionsBtn.addEventListener('click', saveQuestionsToLocal);
         sortOptionsSelect.addEventListener('change', handleSortChange);
         saveQuizBtn.addEventListener('click', saveQuiz);
+
+        const searchButton = document.getElementById('searchButton');
+    if (searchButton) {
+        searchButton.addEventListener('click', () => filterQuestions(filterInput.value.toLowerCase()));
+    } else {
+        console.error('Search button element is missing!');
     }
+    }
+
+    function handleSortChange() {
+    const sortMethod = sortOptionsSelect.value;
+    if (sortMethod === 'alpha') {
+        sortQuestionsAlphabetically();
+    } else if (sortMethod === 'random') {
+        sortQuestionsRandomly();
+    }
+    displayQuestions(); // Refresh the displayed questions after sorting
+}
+
 
     function handleQuizFormSubmit(e) {
     e.preventDefault(); // Prevent the default form submission behavior
 
     // Validate the form inputs
     if (validateForm()) {
-        // If the form is valid, add the question to the quiz
         addQuestion();
 
-        // Display the updated list of submitted questions
         displaySubmittedQuestions();
     } else {
-        // If the form is not valid, you can optionally display an error message or take other actions
         console.log('Form validation failed.');
     }
 }
 function addQuestion() {
-    // Validate the form before proceeding
     if (!validateForm()) {
-        return; // Stop the function if the form is not valid
+        return;
     }
 
-    // Retrieve the question text and the options from the form
-    const questionText = document.getElementById('question').value.trim();
+    const questionTextElement = document.getElementById('question');
+    if (!questionTextElement || !questionTextElement.value) {
+        console.error('Question input not found or value is undefined');
+        return;
+    }
+    const questionText = questionTextElement.value.trim();
+    
+    // Retrieve the options from the form
     const optionsElements = Array.from(document.getElementsByClassName('option'));
     
-    // Get the selected index of the correct answer
-    const correctAnswerIndex = parseInt(document.getElementById('correctAnswer').value) - 1; // -1 because array is 0-based and your options are 1-based
-
+    // Correct answer index
+    const correctAnswerSelect = document.getElementById('correctAnswer');
+    if (!correctAnswerSelect) {
+        console.error('Correct answer select not found');
+        return;
+    }
+    const correctAnswerIndex = parseInt(correctAnswerSelect.value) - 1; 
+    
     // Map the options from input fields to an array of option objects
-    const options = optionsElements.map((optionElement, index) => {
-        return {
-            text: optionElement.value.trim(),
-            isCorrect: index === correctAnswerIndex // Compare the index to the correctAnswerIndex
-        };
-    });
+    const options = optionsElements.map((optionElement, index) => ({
+        text: optionElement.value.trim(),
+        isCorrect: index === correctAnswerIndex
+    }));
 
-    // Create a new question object
+    // Log the options to the console
+    console.log(options);
+
+    // Create the new question object
     const newQuestion = {
-        id: quizQuestions.length + 1, // Assign an ID (incremental for simplicity)
+        id: quizQuestions.length + 1, 
         question: questionText,
         options: options
     };
 
-    // Add the new question to the quizQuestions array
     quizQuestions.push(newQuestion);
-
-    // Save the updated quizQuestions array to local storage
-    localStorage.setItem('quizQuestions', JSON.stringify(quizQuestions));
-
-    // Reset the form fields for the next question
-    document.getElementById('quizForm').reset();
-
-    // Display the updated list of submitted questions
-    displaySubmittedQuestions();
-}
-function displayQuestions(questionsToShow = null) {
-    // Determine the set of questions to display: either the provided array or the full list
-    const questionsToDisplay = questionsToShow || quizQuestions;
     
-    // Clear the current content of the questions list
-    questionsList.innerHTML = '';
+    localStorage.setItem('quizQuestions', JSON.stringify(quizQuestions)); 
 
-    // Iterate through the questions and create HTML for each one
+    document.getElementById('quizForm').reset();
+    
+    displaySubmittedQuestions(); 
+}
+
+
+
+function displaySubmittedQuestions(questionsToShow = quizQuestions) {
+    const submittedQuestionsContainer = document.getElementById('submittedQuestions');
+    submittedQuestionsContainer.innerHTML = '<h2>Submitted Questions</h2>'; 
+
     questionsToDisplay.forEach(question => {
         const questionDiv = document.createElement('div');
         questionDiv.classList.add('question-item');
@@ -117,10 +138,32 @@ function displayQuestions(questionsToShow = null) {
             <button class="answer-reveal" onclick="revealAnswer(${question.id})">Reveal Answer</button>
         `;
 
-        // Append the questionDiv to the questionsList in the DOM
         questionsList.appendChild(questionDiv);
     });
 }
+function displayQuestions(questionsToShow) {
+    questionsList.innerHTML = ''; 
+
+    questionsToShow.forEach(question => {
+        const questionDiv = document.createElement('div');
+        questionDiv.classList.add('question-item');
+
+        let optionsHtml = question.options.map((option, index) => 
+            `<div class="option">${index + 1}. ${option.text}</div>`
+        ).join('');
+
+        questionDiv.innerHTML = `
+            <h3>${question.question}</h3>
+            ${optionsHtml}
+            <button class="answer-reveal" data-question-id="${question.id}" onclick="revealAnswer(this)">Reveal Answer</button>
+            <p class="correct-answer-text" style="display: none;"></p>
+        `;
+
+        questionsList.appendChild(questionDiv);
+    });
+}
+
+
 function displaySubmittedQuestions() {
     // Get the container where the submitted questions will be displayed
     const submittedQuestionsContainer = document.getElementById('submittedQuestions');
@@ -148,90 +191,92 @@ function displaySubmittedQuestions() {
 }
 function saveQuestionsToLocal() {
     try {
-        // Convert the quizQuestions array to a string using JSON.stringify and save it to local storage
         localStorage.setItem('quizQuestions', JSON.stringify(quizQuestions));
         
-        // Notify the user that the questions were saved successfully
         alert('Questions saved successfully!');
     } catch (error) {
-        // Log and alert the user in case of any error
         console.error('Failed to save questions:', error);
         alert('Failed to save questions. Please try again.');
     }
 }
 function displayQuestionsFromLocalStorage() {
     try {
-        // Retrieve the quizQuestions from local storage
         const storedQuestionsJSON = localStorage.getItem('quizQuestions');
 
-        // Check if there are any questions in local storage
         if (storedQuestionsJSON) {
-            // Parse the JSON string back to an array
             quizQuestions = JSON.parse(storedQuestionsJSON);
 
-            // Display the submitted questions
             displaySubmittedQuestions();
         } else {
-            // If there are no questions in local storage, log a message to the console
             console.log('No stored questions to load.');
         }
     } catch (error) {
-        // Log any errors to the console
         console.error('Failed to load questions from local storage:', error);
     }
 }
 function randomizeOptions() {
-    // Get all the option elements and the correct answer select element
     const options = Array.from(document.getElementsByClassName('option'));
-    const correctAnswerSelect = document.getElementById('correctAnswer');
+    const correctAnswerSelect = parseInt(document.getElementById('correctAnswer').value);
 
-    // Store the current correct answer's value
     const currentCorrectValue = correctAnswerSelect.value;
 
-    // Shuffle the options using the Fisher-Yates (Durstenfeld) shuffle algorithm
     for (let i = options.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [options[i].value, options[j].value] = [options[j].value, options[i].value];
     }
 
-    // Find the new index of the correct answer after shuffling and update the correctAnswerSelect
     for (let i = 0; i < options.length; i++) {
         if (options[i].value === currentCorrectValue) {
-            correctAnswerSelect.value = i.toString(); // Set the new correct answer index
+            correctAnswerSelect.value = i.toString(); 
             break;
         }
     }
 
-    // Optionally, call a function to visually update the UI if needed
     updateOptionColors();
 }
 function validateForm() {
-    // Get the value of the question input field
-    const question = document.getElementById('question').value.trim();
-    // Get all the option input elements
-    const options = Array.from(document.getElementsByClassName('option'));
+    const questionInput = document.getElementById('question');
+    if (!questionInput || !questionInput.value) {
+        alert('Please enter a question.');
+        console.log('Validation failed: Question input not found or empty.');
+        return false;
+    }
+    const question = questionInput.value.trim();
 
-    // Check if the question is empty or exceeds the maximum length
+    const options = Array.from(document.getElementsByClassName('option'));
+    if (options.length === 0) {
+        alert('No option fields found.');
+        console.log('Validation failed: No option fields found.');
+        return false;
+    }
+
     if (!question || question.length > 140) {
         alert('Question length must not exceed 140 characters and cannot be empty.');
-        return false;  // Return false to indicate invalid form data
+        console.log('Validation failed: Question length issue.');
+        return false;
     }
+    console.log('Validation passed.');
+    return true;
 
-    // Check if any of the options are empty
-    const hasEmptyOption = options.some(option => !option.value.trim());
+    const hasEmptyOption = options.some(option => {
+        const isOptionEmpty = !option.value || !option.value.trim();
+        console.log(option.value, isOptionEmpty); // Log each option's value and whether it's considered empty
+        return isOptionEmpty;
+    });
+
     if (hasEmptyOption) {
         alert('Please fill in all option fields.');
-        return false;  // Return false to indicate invalid form data
+        console.log('Validation failed: Empty option field.');
+        return false;
     }
 
-    // If all checks pass, return true
     return true;
 }
+
+
 function sortQuestionsAlphabetically() {
-    // Sort quizQuestions array alphabetically based on the question text
     quizQuestions.sort((a, b) => a.question.localeCompare(b.question));
 
-    // After sorting, display the questions
     displayQuestions();
 }
 function sortQuestionsRandomly() {
@@ -244,16 +289,13 @@ function sortQuestionsRandomly() {
         [quizQuestions[i], quizQuestions[j]] = [quizQuestions[j], quizQuestions[i]];
     }
 
-    // After shuffling, display the questions
     displayQuestions();
 }
-function filterQuestions() {
-    const searchText = filterInput.value.toLowerCase();  
+function filterQuestions(searchText) {
     const filteredQuestions = quizQuestions.filter(question => 
-        question.question.toLowerCase().includes(searchText)  
+        question.question.toLowerCase().includes(searchText)
     );
-
-    displayQuestions(filteredQuestions);  
+    displaySubmittedQuestions(filteredQuestions);  
 }
 function updateOptionColors() {
     const correctIndex = parseInt(document.getElementById('correctAnswer').value) - 1; // Get the selected index of the correct answer
@@ -290,14 +332,11 @@ window.revealAnswer = function(questionId) {
         return;
     }
 
-    // Set the text of the answerText element to the explanation of the question
     answerText.innerText = question.explanation;
 
-    // Display the modal
     answerModal.style.display = 'block';
 };
 function saveQuiz() {
-    // Get the quiz name from the input field
     const quizNameInput = document.getElementById('quizName');
     
     // Check if the quizNameInput element exists
